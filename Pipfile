@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+"django" = "==2.2.4"
+"pycrypto" = "*"
+mysqlclient = "*"
+django-ipware = "*"
+django-cors-headers = "*"
+uwsgi = "*"
+filelock = "*"
+django-admin-ip-restrictor = "*"
+sentry-sdk = "*"
+pylint = "*"
+flake8 = "*"
+django-csp = "*"
+gunicorn = {extras = ["gevent"],version = "*"}
+
+[dev-packages]
+django-debug-toolbar = "*"
+
+[requires]
+python_version = "3.6"

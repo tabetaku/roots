@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+  bootstrap-mariadb:
+    image: mariadb:10.4
+    container_name: bootstrap-mariadb
+    restart: always
+    volumes:
+      - ./.tmp/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bootstrap
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: test
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+
+  bootstrap-django:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: bootstrap-django
+    restart: always
+    volumes:
+      - .:/htdocs/www
+    depends_on:
+      - bootstrap-mariadb
+    links:
+      - bootstrap-mariadb
+    command: ['./docs/dev/wait_for_it.sh', 'mysqladmin ping -h bootstrap-mariadb -u root -proot', 'make docker-cmd']
+
+  bootstrap-django-nginx:
+    image: nginx:stable
+    container_name: bootstrap-django-nginx
+    restart: always
+    volumes:
+      - ./docs/dev/nginx:/etc/nginx/conf.d:ro
+      - ./docs/dev/cert:/etc/nginx/cert/:ro
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - bootstrap-django
+    links:
+      - bootstrap-django
