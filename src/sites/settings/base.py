@@ -140,9 +140,12 @@ STATICFILES_DIRS = (os.path.join(BASE_PATH, 'static/src', ),)
 STATIC_ROOT = os.path.join(BASE_PATH, 'static/dist')
 
 # Sentry
-
 SENTRY_IGNORE_ERRORS = (OSError, )
 sentry_sdk.init(
     dsn=Secrets.get(SecretKey.SENTRY_DSN), before_send=before_send,
     integrations=[DjangoIntegration(), ExcepthookIntegration(always_run=True), LoggingIntegration(logging.INFO, logging.ERROR), ]
 )
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(MOUNT_PATH, 'media')

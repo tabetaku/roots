@@ -18,6 +18,7 @@ django-csp = "*"
 gunicorn = {extras = ["gevent"],version = "*"}
 psycopg2 = "*"
 django-grappelli = "*"
+pillow = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
