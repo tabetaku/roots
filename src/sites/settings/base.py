@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
     # Apps
     'apps.domains.hello_world',
+    'apps.domains.metadata',
 ]
 
 MIDDLEWARE = [
