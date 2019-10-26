@@ -6,7 +6,7 @@ services:
     container_name: roots-postgresql
     restart: always
     volumes:
-      - ./.tmp/rdbms://var/lib/postgresql/data
+      - ./.tmp/rdbms:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
