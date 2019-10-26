@@ -24,6 +24,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -129,6 +131,7 @@ ALLOWED_ADMIN_IPS = ['127.0.0.1', '::1', ]
 ALLOWED_ADMIN_IP_RANGES = ['127.0.0.0/24', '192.168.0.0/16', '172.16.0.0/12', '::/1', ]
 ALLOWED_ADMIN_PROXY_COUNT = 0
 RESTRICTED_APP_NAMES = ['admin', ]
+GRAPPELLI_ADMIN_TITLE = '도라마 루츠'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'

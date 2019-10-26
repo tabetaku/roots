@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "78b5bb7b5b7e53b7ee15bb29f8969f577b89262db3f7896d8ba99248e93e8adb"
+            "sha256": "89e31d73815ec6d8a4142ab52d9cd47f6f016251c6e5e935636ef26c47282eb9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -124,6 +124,13 @@
             ],
             "index": "pypi",
             "version": "==3.5"
+        },
+        "django-grappelli": {
+            "hashes": [
+                "sha256:8f3939a620aa2283f38b945b9963501b15c1b26abe03414fb48576765d59942d"
+            ],
+            "index": "pypi",
+            "version": "==2.13.1"
         },
         "django-ipware": {
             "hashes": [
