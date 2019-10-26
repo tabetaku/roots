@@ -1,9 +1,6 @@
-FROM python:3.6
+FROM python:3.7
 
-RUN apt update \
-    && apt install -y mysql-server default-libmysqlclient-dev \
-    && rm -rf /var/lib/apt/lists/* \
-    && pip3 install pip --upgrade \
+RUN pip3 install pip --upgrade \
     && pip3 install pipenv
 
 ENV PYTHONUNBUFFERED 1

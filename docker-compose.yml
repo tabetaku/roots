@@ -1,38 +1,41 @@
 version: '3.4'
 
 services:
-  bootstrap-mariadb:
-    image: mariadb:10.4
-    container_name: bootstrap-mariadb
+  roots-postgresql:
+    image: postgres:12.0
+    container_name: roots-postgresql
     restart: always
     volumes:
-      - ./.tmp/mysql:/var/lib/mysql
+      - ./.tmp/rdbms://var/lib/postgresql/data
     ports:
-      - 3306:3306
+      - 5432:5432
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: bootstrap
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: test
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+      POSTGRES_DB: roots
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: test
 
-  bootstrap-django:
+  roots-django:
     build:
       context: .
       dockerfile: ./Dockerfile
-    container_name: bootstrap-django
+    container_name: roots-django
     restart: always
     volumes:
       - .:/htdocs/www
     depends_on:
-      - bootstrap-mariadb
+      - roots-postgresql
     links:
-      - bootstrap-mariadb
-    command: ['./docs/dev/wait_for_it.sh', 'mysqladmin ping -h bootstrap-mariadb -u root -proot', 'make docker-cmd']
+      - roots-postgresql
+    command:
+      - bash
+      - -c
+      - |
+        ./docs/dev/wait_for_it.sh roots-postgresql:5432
+        make docker-cmd
 
-  bootstrap-django-nginx:
+  roots-nginx:
     image: nginx:stable
-    container_name: bootstrap-django-nginx
+    container_name: roots-nginx
     restart: always
     volumes:
       - ./docs/dev/nginx:/etc/nginx/conf.d:ro
@@ -41,6 +44,6 @@ services:
       - 80:80
       - 443:443
     depends_on:
-      - bootstrap-django
+      - roots-django
     links:
-      - bootstrap-django
+      - roots-django

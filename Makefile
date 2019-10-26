@@ -28,7 +28,7 @@ install-mysql:
 
 install-package:
 	@pipenv install --dev
-	@pipenv update --dev
+	# @pipenv update --dev
 
 collect-static:
 	@pipenv run python src/manage.py collectstatic --no-input --clear
@@ -39,10 +39,10 @@ run-server:
 	@pipenv run python src/manage.py runserver 0.0.0.0:8000
 
 run-uwsgi:
-	@pipenv run uwsgi --ini /htdocs/www/docs/wsgi/uwsgi/bootstrap-django.ini --import infras.crontab
+	@pipenv run uwsgi --ini /htdocs/www/docs/wsgi/uwsgi/roots-django.ini --import infras.crontab
 
 run-gunicorn:
-	@pipenv run gunicorn -c /htdocs/www/docs/wsgi/gunicorn/bootstrap-django.py sites.wsgi:application
+	@pipenv run gunicorn -c /htdocs/www/docs/wsgi/gunicorn/roots-django.py sites.wsgi:application
 
 # test
 test:
@@ -64,4 +64,4 @@ docker-kill-all:
 	@docker ps -a -q | xargs docker rm -f
 
 docker-logs:
-	@docker-compose logs -f bootstrap-django
+	@docker-compose logs -f roots-django

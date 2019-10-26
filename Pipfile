@@ -4,9 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-"django" = "==2.2.4"
-"pycrypto" = "*"
-mysqlclient = "*"
+"django" = "==2.2.6"
+"cryptography" = "*"
 django-ipware = "*"
 django-cors-headers = "*"
 uwsgi = "*"
@@ -17,9 +16,10 @@ pylint = "*"
 flake8 = "*"
 django-csp = "*"
 gunicorn = {extras = ["gevent"],version = "*"}
+psycopg2 = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
