@@ -44,6 +44,9 @@ run-uwsgi:
 run-gunicorn:
 	@pipenv run gunicorn -c /htdocs/www/docs/wsgi/gunicorn/roots-django.py sites.wsgi:application
 
+shell:
+	@pipenv shell
+
 # test
 test:
 	@pipenv run python src/manage.py test src --noinput
@@ -65,3 +68,6 @@ docker-kill-all:
 
 docker-logs:
 	@docker-compose logs -f roots-django
+
+docker-bash:
+	@docker-compose exec roots-django /bin/bash
