@@ -4,14 +4,12 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 # docker
-docker-cmd: install-all run-server
-docker-uwsgi-cmd: install-all run-uwsgi
-docker-gunicorn-cmd: install-all run-gunicorn
+docker-cmd: install-package settings collect-static run-server
+docker-uwsgi-cmd: install-package collect-static run-uwsgi
+docker-gunicorn-cmd: install-package collect-static run-gunicorn
 
 
 # install
-install-all: install-package settings collect-static
-
 settings:
 	@pipenv run make settings-internal
 
@@ -28,7 +26,6 @@ install-mysql:
 
 install-package:
 	@pipenv install --dev
-	# @pipenv update --dev
 
 collect-static:
 	@pipenv run python src/manage.py collectstatic --no-input --clear
