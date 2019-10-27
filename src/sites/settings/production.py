@@ -9,7 +9,7 @@ DEBUG = False
 
 setup_logging(DEBUG)
 
-ALLOWED_HOSTS = ['127.0.0.1', ]
+ALLOWED_HOSTS = ['roots.jun2.org', ]
 
 # HSTS
 SECURE_HSTS_SECONDS = 31536000  # 365 * 24 * 60 * 60
