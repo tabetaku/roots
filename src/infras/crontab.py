@@ -14,7 +14,7 @@ from libs.lock.decorators import f_lock
 # 새로운 hash 가 있는지 계속 검사하고 있으면 uwsgi 를 kil 함
 # Docker 가 재시작하면서 Master 의 최신 파일 가져옴
 @timer(10)
-@f_lock(FileLockKeyName.SYSTEM_CHECK)
+@f_lock(FileLockKeyName.UPDATE_CHECK)
 def self_kill_if_update_available(signum: int):
     # 일단 하드코딩으로 작성한다.
     work_dir = os.environ['WORK_DIR']
