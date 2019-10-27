@@ -8,7 +8,7 @@ from apps.domains.home import urls as home_urls
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),  # grappelli URLS
     path('cms/', admin.site.urls),
-    path('/', include(home_urls, namespace='home')),
+    path('', include(home_urls, namespace='home')),
 ]
 
 if settings.DEBUG:
