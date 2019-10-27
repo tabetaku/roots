@@ -2,8 +2,8 @@ from libs.base.constants import BaseConstant
 
 
 class FileLockKeyName(BaseConstant):
-    SYSTEM_CHECK = 'system_check'
+    UPDATE_CHECK = 'update_check'
 
     _LIST = [
-        SYSTEM_CHECK,
+        UPDATE_CHECK,
     ]

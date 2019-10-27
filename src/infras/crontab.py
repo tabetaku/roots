@@ -3,18 +3,10 @@ import os
 import subprocess
 
 from requests import get
-from django.core.management import call_command
 from uwsgidecorators import timer
 
 from infras.constants.lock_constants import FileLockKeyName
 from libs.lock.decorators import f_lock
-
-
-@timer(10)
-@f_lock(FileLockKeyName.SYSTEM_CHECK)
-def check(signum: int):
-    call_command('check')
-
 
 # NAS 에서 자동 업데이트를 위한 기능
 # NAS Docker 에 자동 재시작 설정함
@@ -22,6 +14,7 @@ def check(signum: int):
 # 새로운 hash 가 있는지 계속 검사하고 있으면 uwsgi 를 kil 함
 # Docker 가 재시작하면서 Master 의 최신 파일 가져옴
 @timer(10)
+@f_lock(FileLockKeyName.SYSTEM_CHECK)
 def self_kill_if_update_available(signum: int):
     # 일단 하드코딩으로 작성한다.
     work_dir = os.environ['WORK_DIR']
