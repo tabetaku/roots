@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 
 
-class HelloWorldView(View):
+class HomeView(View):
     @staticmethod
     def get(request):
-        return render(request, 'hello_world/index.html', {})
+        return render(request, 'home/index.html', {})

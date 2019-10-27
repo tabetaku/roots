@@ -3,12 +3,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from apps.domains.hello_world import urls as hello_world_urls
+from apps.domains.home import urls as home_urls
 
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),  # grappelli URLS
     path('cms/', admin.site.urls),
-    path('hello-world/', include(hello_world_urls, namespace='hello_world')),
+    path('/', include(home_urls, namespace='home')),
 ]
 
 if settings.DEBUG:

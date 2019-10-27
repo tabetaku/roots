@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # Apps
-    'apps.domains.hello_world',
+    'apps.domains.home',
     'apps.domains.metadata',
 ]
 
