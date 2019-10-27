@@ -74,7 +74,7 @@ TEMPLATES = [
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'roots',
         'USER': Secrets.get(SecretKey.WRITE_DB_USER),
         'PASSWORD': Secrets.get(SecretKey.WRITE_DB_PASSWORD),

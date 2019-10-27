@@ -1,18 +1,21 @@
 version: '3.4'
 
 services:
-  roots-postgresql:
-    image: postgres:12.0
-    container_name: roots-postgresql
+  roots-mariadb:
+    image: mariadb:10.3
+    container_name: roots-mariadb
     restart: always
-    volumes:
-      - ./.tmp/rdbms:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 3306:3306
+    volumes:
+      - ./.tmp/mysql:/var/lib/mysql
+      - ./.tmp/mysqld:/var/run/mysqld
     environment:
-      POSTGRES_DB: roots
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: roots
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: test
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
 
   roots-django:
     build:
@@ -23,14 +26,14 @@ services:
     volumes:
       - .:/htdocs/www
     depends_on:
-      - roots-postgresql
+      - roots-mariadb
     links:
-      - roots-postgresql
+      - roots-mariadb
     command:
       - bash
       - -c
       - |
-        ./docs/dev/wait_for_it.sh roots-postgresql:5432
+        ./docs/dev/wait_for_it.sh roots-mariadb:3306
         make docker-cmd
 
   roots-nginx:
