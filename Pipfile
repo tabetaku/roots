@@ -16,9 +16,10 @@ pylint = "*"
 flake8 = "*"
 django-csp = "*"
 gunicorn = {extras = ["gevent"],version = "*"}
-psycopg2 = "*"
+# psycopg2 = "*"
 django-grappelli = "*"
 pillow = "*"
+requests = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
