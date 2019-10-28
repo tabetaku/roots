@@ -3,3 +3,8 @@
 ```
 make docker-up
 ```
+
+## Lint
+```
+make lint
+```
