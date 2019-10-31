@@ -67,10 +67,10 @@ class People(BaseModel):
     name = models.CharField(max_length=32, null=True, blank=True, verbose_name='이름', )
     name_kor = models.CharField(max_length=32, null=False, blank=False, verbose_name='한글이름', )
 
+    name_original = models.CharField(max_length=32, null=False, blank=True, verbose_name='본명', )
     name_original_kor = models.CharField(max_length=32, null=False, blank=True, verbose_name='본명-한글', )
-    name_original_foreign = models.CharField(max_length=32, null=False, blank=True, verbose_name='본명-외국어', )
 
-    gender = models.IntegerField(null=False, blank=False, choices=GenderType.get_choices(), verbose_name='성별')
+    gender = models.IntegerField(null=True, blank=True, choices=GenderType.get_choices(), verbose_name='성별')
 
     profile_img = models.ImageField(null=True, blank=True, upload_to=_people_profile_img_upload_to, verbose_name='사진', )
 
