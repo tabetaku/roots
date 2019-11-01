@@ -20,6 +20,7 @@ mysqlclient = "==1.3.13"
 django-grappelli = "*"
 pillow = "*"
 requests = "*"
+djangorestframework = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
