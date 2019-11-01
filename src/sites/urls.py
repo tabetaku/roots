@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 from apps.domains.home import urls as home_urls
+from libs.django.swagger.custom_schema_view import CustomSchemaView
 
 urlpatterns = [
     path('grappelli/', include('grappelli.urls')),  # grappelli URLS
@@ -16,4 +17,5 @@ if settings.DEBUG:
 
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
+        path('docs/swagger/', CustomSchemaView.with_ui(), name='schemas-swagger-ui'),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
