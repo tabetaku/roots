@@ -150,3 +150,10 @@ sentry_sdk.init(
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(MOUNT_PATH, 'media')
+
+# Swagger
+SWAGGER_SETTINGS = {
+    'LOGOUT_URL': '/',
+    'SUPPORTED_SUBMIT_METHODS': ['get', 'post', 'put'],
+    'SECURITY_DEFINITIONS': {},  # if this setting deleted, basic authorization will be show as default
+}

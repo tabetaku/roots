@@ -21,6 +21,7 @@ django-grappelli = "*"
 pillow = "*"
 requests = "*"
 djangorestframework = "*"
+drf-yasg = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
