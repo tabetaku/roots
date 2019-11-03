@@ -113,3 +113,6 @@ venv.bak/
 # temp
 .tmp
 /mount/*
+
+node_modules/*
+data/*
