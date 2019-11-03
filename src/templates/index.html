@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load render_bundle from webpack_loader %}
+
+{% block stylesheets %}
+  {% render_bundle 'main' 'css' %}
+{% endblock %}
+
+{% block scripts %}
+  {% render_bundle 'main' 'js' %}
+{% endblock %}
+
+{% block content %}
+  <div id="root"></div>
+{% endblock %}

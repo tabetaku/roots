@@ -1,26 +1,33 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-console.log(__dirname);
-module.exports = {
-  entry: './src/static/src/js/index.tsx',
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js']
-  },
-  output: {
-    path: path.join(__dirname, '/src/static/dist'),
-    filename: 'bundle.min.js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader'
-      }
+const BundleTracker = require('webpack-bundle-tracker');
+
+module.exports = (env, options) => {
+  let output_path = '/src/static/build/';
+  if (options.mode === 'production') {
+    output_path = '/src/static/dist/';
+  }
+
+  return {
+    entry: './src/static/src/js/index.tsx',
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js']
+    },
+    output: {
+      path: path.join(__dirname, output_path),
+      filename: "[name]-[hash].js"
+    },
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          loader: 'awesome-typescript-loader'
+        }
+      ]
+    },
+    plugins: [
+      new BundleTracker({
+        filename: './src/static/webpack-stats.json'
+      })
     ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/static/src/index.html'
-    })
-  ]
+  };
 };

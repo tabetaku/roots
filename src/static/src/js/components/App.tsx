@@ -4,10 +4,16 @@ import PageInterface from '../PageInterface';
 
 class App extends React.Component<PageInterface, {}> {
   render() {
-    return (<div>
-      <h1>Welcome to React with Typescript</h1>
-      <p>The color of this page is: {this.props.color}</p>
-    </div>
+    return (
+        <div className="container main">
+          <div className="row">
+            <div className="jumbotron col-12">
+              <div className="container">
+                <h1>Hello, world! {this.props.color}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
     );
   }
 }

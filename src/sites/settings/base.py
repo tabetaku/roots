@@ -34,8 +34,13 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'drf_yasg',
+    'webpack_loader',
+
+
 
     # Apps
+    'apps.system.spa',
+
     'apps.domains.home',
     'apps.domains.metadata',
 ]
@@ -138,8 +143,15 @@ GRAPPELLI_ADMIN_TITLE = '도라마 루츠'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_PATH, 'static/src', ),)
 STATIC_ROOT = os.path.join(BASE_PATH, 'static/dist')
+STATICFILES_DIRS = (os.path.join(BASE_PATH, 'static/build', ),)
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': '',
+        'STATS_FILE': os.path.join(BASE_PATH, 'static/webpack-stats.json'),
+    }
+}
 
 # Sentry
 SENTRY_IGNORE_ERRORS = (OSError, )
